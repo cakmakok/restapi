@@ -8,7 +8,7 @@ from flask_pymongo import PyMongo, ObjectId
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'songs'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/songs'
+app.config['MONGO_URI'] = 'mongodb://db:27017/songs'
 
 mongo = PyMongo(app)
 
@@ -128,4 +128,4 @@ def get_song_rating(song_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port="5000")
