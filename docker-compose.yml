@@ -1,0 +1,20 @@
+web:
+  build: .
+  command: python -u app.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/rest
+  links:
+    - db
+db:
+  image: mongo
+
+mongo-seed:
+    image: mongo
+    links:
+      - db
+    volumes:
+      - ./seed-data:/seed-data
+    command:
+      'bash -c "mongoimport --db songs --collection songs --host db --type json --file /seed-data/songs.json --jsonArray"'
