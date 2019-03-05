@@ -21,6 +21,10 @@ class FlaskTestCase(unittest.TestCase):
             output.append(s)
         assert result['result'] == output
 
+    def test_get_average_difficulty(self):
+        result = json.loads(self.app.get('/songs/avg/difficulty/').data)
+        assert result['result'] == float('10.323636363636364')
+
 
 if __name__ == '__main__':
     unittest.main()
